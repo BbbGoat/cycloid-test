@@ -1,17 +1,18 @@
 <template>
-  <div>
-    여기 들어가는거?
-    <HelloWorld msg="ㅇㄹㄴㅁㅇㄻㄴㅇ"/>
+  <div id="app">
+    <router-link to="/login">login</router-link>
+    <router-link to="/register">register</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld,
   }
 }
 </script>

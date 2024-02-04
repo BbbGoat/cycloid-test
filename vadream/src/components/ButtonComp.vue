@@ -1,6 +1,6 @@
 <template>
   <div class="btn-wrap">
-    <button>
+    <button :type="type">
       {{title}}
     </button>
   </div>
@@ -10,6 +10,7 @@
 export default {
     name: 'ButtonComp',
     props: {
+      type: String,
       title: String,
     }
 }
@@ -26,7 +27,8 @@ button {
 
   border: 0;
   color: #fff;
-  border-radius: 5px;
   background: rgb(3, 179, 233);
+  border-radius: 5px;
+  cursor: pointer;
 }
 </style>

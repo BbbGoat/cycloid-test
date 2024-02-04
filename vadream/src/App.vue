@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <router-link to="/"><h1>로고</h1></router-link>
+    <header>
+      <router-link to="/">
+        <h1>
+          <img src="/images/logo.png" alt="사이클로이드로고">
+        </h1>
+      </router-link>
+    </header>
     <router-link to="/register">register</router-link>
     <router-link to="/main">main</router-link>
     <router-view></router-view>
@@ -19,4 +25,12 @@ export default {
 </script>
 
 <style>
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 99;
+}
 </style>

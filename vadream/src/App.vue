@@ -7,8 +7,8 @@
         </h1>
       </router-link>
     </header>
-    <router-link to="/register">register</router-link>
-    <router-link to="/main">main</router-link>
+    <!-- <router-link to="/register">register</router-link>
+    <router-link to="/main">main</router-link> -->
     <router-view></router-view>
   </div>
 </template>
@@ -30,7 +30,10 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
   z-index: 99;
+  padding: 3rem 3rem 0;
+}
+header h1 {
+  display: inline-block;
 }
 </style>

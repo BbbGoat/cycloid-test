@@ -25,11 +25,13 @@
             </div>
           </div>
           <div class="option-box">
-            <div>
+            <div class="remember">
               <input id="remember" type="checkbox" />
               <label for="remember">아이디 저장</label>
             </div>
-            <router-link to="/register">회원가입</router-link>
+            <div class="register">
+              <router-link to="/register">회원가입</router-link>
+            </div>
           </div>
           <div class="btn-box">
             <ButtonComp type="submit" title="로그인" />
@@ -132,12 +134,26 @@ export default {
   margin-top: 1.6rem;
 }
 .errorEmail input {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ff5245;
 }
 .errorPassword input {
-  margin-top: 3rem;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ff5245;
 }
-
-
+.setErrorMessage {
+  font-size: 1.2rem;
+  color: #ff5245;
+  padding: 1rem 0.4rem;
+}
+.option-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 3rem 0;
+  font-size: 1.4rem;
+}
+.remember {
+}
+.register {
+}
 </style>

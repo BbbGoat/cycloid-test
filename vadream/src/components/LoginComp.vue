@@ -24,15 +24,20 @@
         <router-link to="/register">회원가입</router-link>
       </div>
       <!-- 로그인 버튼은 컴포넌트로 만들어서 여기저기 사용할 예정!!! -->
-      <button>로그인</button>
+      <ButtonComp type="submit" title="버튼버튼버튼" />
     </div>
   </div>
 </template>
 
 <script>
+import ButtonComp from './ButtonComp.vue';
+
 export default {
   name: "LoginComp",
   props: {},
+  components: {
+    ButtonComp
+  },
 };
 </script>
 

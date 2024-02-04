@@ -21,9 +21,6 @@ export default {
 </script>
 
 <style scoped>
-.btn-wrap {
-
-}
 button {
   width: 100%;
   padding: 1.5rem;

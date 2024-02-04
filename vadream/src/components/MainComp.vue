@@ -95,6 +95,7 @@ export default {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  color: #505050;
 }
 .line span:nth-of-type(2) {
   width: 50%;
@@ -104,6 +105,7 @@ export default {
   margin-right: 10px;
 }
 
+/* 버튼영역 */
 .btn-area {
   padding: 1rem;
 }

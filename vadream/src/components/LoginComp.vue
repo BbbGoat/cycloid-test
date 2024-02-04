@@ -12,7 +12,7 @@
         <form v-on:submit.prevent="handleSubmit()">
           <div class="input-box">
             <div :class="setEmailError ? 'errorEmail' : ''">
-              <input type="email" placeholder="아이디" v-model="email"/>
+              <input type="text" placeholder="아이디" v-model="email"/>
               <div class="setErrorMessage" v-if="setEmailError">
                 <span>아이디를 입력해주세요.</span>
               </div>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="btn-box">
-            <ButtonComp type="submit" title="로그인" />
+            <ButtonComp type="submit" title="로그인" :secondary="false" />
           </div>
         </form>
       </div>
@@ -53,8 +53,8 @@ export default {
   },
   data() {
     return {
-      email : null,
-      password: null,
+      email : '',
+      password: '',
       setEmailError: false,
       setPasswordError: false,
     }
@@ -62,11 +62,14 @@ export default {
   methods: {
     handleSubmit() {
       console.log('submit!', this.email);
-      if (this.email === null) {
+      this.setEmailError = false;
+      this.setPasswordError = false;
+      
+      if (this.email === '') {
         this.setEmailError = true;
         return
       }
-      if (this.password === null) {
+      if (this.password === '') {
         this.setPasswordError = true;
         return
       }
@@ -151,9 +154,5 @@ export default {
   width: 100%;
   padding: 3rem 0;
   font-size: 1.4rem;
-}
-.remember {
-}
-.register {
 }
 </style>

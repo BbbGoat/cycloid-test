@@ -20,6 +20,22 @@
           <h2 class="title">최근 재생 된 컨텐츠 (Carousel)</h2>
           <div class="slide">
             <!-- 스와이퍼 -->
+            <swiper
+              :modules="modules"
+              :slides-per-view="6.5"
+              :space-between="30"
+              :freeMode="true"
+              @swiper="onSwiper"
+              @slideChange="onSlideChange"
+            >
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+              <swiper-slide>slide1</swiper-slide>
+            </swiper>
 
             <!-- 전체리스트 map -->
             <div class="list">
@@ -163,6 +179,11 @@
 
 <script>
 import ButtonComp from './ButtonComp.vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { FreeMode } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 export default {
   name: 'MainComp',
@@ -171,7 +192,22 @@ export default {
   },
   components: {
     ButtonComp,
-  }  
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+      modules: [FreeMode]
+    };
+  }
 }
 </script>
 
@@ -337,6 +373,6 @@ article.left-side {
   width: 100%;
 }
 article > section {
-  padding: 3rem;
+  margin: 3rem;
 }
 </style>

@@ -203,11 +203,9 @@ export default {
 }
 .contents {
   display: grid;
-  /* grid-template-columns: repeat(6, 1fr); */
   grid-template-columns: repeat(auto-fill, minmax(170px, auto));
   grid-column-gap: 10px;
   grid-row-gap: 10px;
-  /* max-width: 1000px; */
 }
 .list {
   width: 170px;
@@ -284,14 +282,13 @@ export default {
 
 
 aside.right-side {
-  outline: 1px solid red;
+  border-left: 1px solid #e5e5e5;
 }
 .player {
   position: sticky;
   width: 360px;
   top: 3rem;
   height: 600px;
-  background: #fff;
   margin: 3rem;
 }
 .player .wrap {
@@ -331,10 +328,10 @@ aside.right-side {
   cursor: pointer;
 }
 article.left-side {
-  width: 70%;
+  width: 77%;
 }
 article > section {
-  max-width: 1100px;
+  max-width: 1440px;
   margin: 3rem;
 }
 </style>

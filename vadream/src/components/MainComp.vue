@@ -133,9 +133,6 @@
           <div class="list">
             <div class="inner">
               <div class="img-area">
-                <div class="icon" role="button" tabindex="1">
-                  <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
-                </div>
                 <img src="/images/prd1.png" alt="상품 이미지">
               </div>
               <div class="info">
@@ -318,6 +315,7 @@ aside.right-side {
 }
 .player .list {
   width: 100%;
+  margin-bottom: 10px;
 }
 .player .inner {
   display: flex;

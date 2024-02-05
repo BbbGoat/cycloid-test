@@ -26,35 +26,32 @@
               :space-between="15"
               :freeMode="true"
             >
-              <!-- 전체리스트 map -->
+              <!-- map -->
               <swiper-slide v-for="(item,idx) in prdData" :key="idx" style="width: auto;">
                 <div class="list">
                   <div class="inner">
                     <div class="img-area">
-                      <div class="icon" role="button" tabindex="1">
-                        <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
-                      </div>
                       <img src="/images/prd1.png" alt="상품 이미지">
                     </div>
                     <div class="info">
-                      <h3>영상제목</h3>
+                      <h3>{{ item.title }}</h3>
                       <div class="line">
                         <span>TYPE</span>
-                        <span>Video</span>
+                        <span>{{ item.type }}</span>
                       </div>
                       <div class="line">
                         <span>SIZE</span>
-                        <span>20 MB</span>
+                        <span>{{ item.size }}</span>
                       </div>
                       <div class="line">
                         <span>TIME</span>
-                        <span>01:00</span>
+                        <span>{{ item.time }}</span>
                       </div>
                     </div>
                     <div class="btn-area">
                       <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
-                      <button class="add-btn" type="button">추가하기</button>
-                      <button class="added-btn" type="button">추가됨</button>
+                      <button class="add-btn" type="button" v-if="item.isAdded === false" @click="handleAdd(item)">추가하기</button>
+                      <button class="added-btn" type="button" v-if="item.isAdded === true">추가됨</button>
                     </div>
                   </div>
                 </div>
@@ -75,7 +72,7 @@
                   <div class="icon" role="button" tabindex="1">
                     <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
                   </div>
-                  <img src="/images/prd1.png" alt="상품 이미지">
+                  <img :src="item.url" alt="상품 이미지">
                 </div>
                 <div class="info">
                   <h3>{{ item.title }}</h3>
@@ -93,7 +90,7 @@
                   </div>
                 </div>
                 <div class="btn-area">
-                  <button class="add-btn" type="button" v-if="item.isAdded === false">추가하기</button>
+                  <button class="add-btn" type="button" v-if="item.isAdded === false" @click="handleAdd(item)">추가하기</button>
                   <button class="added-btn" type="button" v-if="item.isAdded === true">추가됨</button>
                 </div>
               </div>
@@ -107,28 +104,28 @@
             <h2 class="title">플레이 리스트</h2>
             <button class="play-btn" type="button">재생</button>
           </div>
-
-          <div class="list">
+          <!-- map -->
+          <div class="list" v-for="(item, idx) in playerData" :key="idx">
             <div class="inner">
               <div class="img-area">
-                <img src="/images/prd1.png" alt="상품 이미지">
+                <img :src="item.url" alt="상품 이미지">
               </div>
               <div class="info">
-                <h3>영상제목</h3>
+                <h3>{{ item.title }}</h3>
                 <div class="line">
                   <span>TYPE</span>
-                  <span>Video</span>
+                  <span>{{ item.type }}</span>
                 </div>
                 <div class="line">
                   <span>SIZE</span>
-                  <span>20 MB</span>
+                  <span>{{ item.size }}</span>
                 </div>
                 <div class="line">
                   <span>TIME</span>
-                  <span>01:00</span>
+                  <span>{{ item.time }}</span>
                 </div>
               </div>
-              <div class="btn-area">
+              <div class="btn-area" @click="handleClean(item)">
                 <font-awesome-icon :icon="['fas', 'xmark']" size="xl" class="del-btn" />
               </div>
             </div>
@@ -154,6 +151,17 @@ export default {
   data() {
     return {
       prdData: prdData,
+      playerData: [],
+    }
+  },
+  methods: {
+    handleAdd(item) {
+      item.isAdded = true;
+      this.playerData.push(item);
+    },
+    handleClean(item) {
+      item.isAdded = false;
+      this.playerData = this.playerData.filter((pdata) => pdata.title != item.title);
     }
   },
   components: {
@@ -209,7 +217,7 @@ export default {
 }
 .list {
   width: 170px;
-  border: 1px solid #f5f5f5;
+  border: 1px solid #e5e5e5;
   border-radius: 7px;
   overflow: hidden;
 }

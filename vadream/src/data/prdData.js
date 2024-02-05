@@ -55,6 +55,30 @@ const prdData = [
         time: '01:00',
         isAdded: false,
     },
+    {
+        url: '/images/prd2.png',
+        title: '영상제목8',
+        type: 'Video',
+        size: '20 MB',
+        time: '01:00',
+        isAdded: false,
+    },
+    {
+        url: '/images/prd1.png',
+        title: '영상제목9',
+        type: 'Video',
+        size: '20 MB',
+        time: '01:00',
+        isAdded: false,
+    },
+    {
+        url: '/images/prd1.png',
+        title: '영상제목10',
+        type: 'Video',
+        size: '20 MB',
+        time: '01:00',
+        isAdded: false,
+    },
 
 ]
 

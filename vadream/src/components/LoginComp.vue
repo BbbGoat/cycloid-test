@@ -118,7 +118,6 @@ export default {
 .text-box h3 {
   font-size: 3.2rem;
   line-height: 1.4;
-  /* font-weight: 500; */
 }
 .input-box {
   margin-top: 6rem;

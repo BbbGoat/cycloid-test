@@ -49,7 +49,6 @@
                       </div>
                     </div>
                     <div class="btn-area">
-                      <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
                       <button class="add-btn" type="button" v-if="item.isAdded === false" @click="handleAdd(item)">추가하기</button>
                       <button class="added-btn" type="button" v-if="item.isAdded === true">추가됨</button>
                     </div>

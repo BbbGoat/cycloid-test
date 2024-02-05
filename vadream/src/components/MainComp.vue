@@ -31,7 +31,7 @@
                 <div class="list">
                   <div class="inner">
                     <div class="img-area">
-                      <img src="/images/prd1.png" alt="상품 이미지">
+                      <img :src="item.url" alt="상품 이미지">
                     </div>
                     <div class="info">
                       <h3>{{ item.title }}</h3>
@@ -69,7 +69,7 @@
             <div class="list" v-for="(item, idx) in prdData" :key="idx">
               <div class="inner">
                 <div class="img-area">
-                  <div class="icon" role="button" tabindex="1">
+                  <div class="icon" role="button" tabindex="1" @click="handleDelete(item)">
                     <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
                   </div>
                   <img :src="item.url" alt="상품 이미지">
@@ -162,6 +162,11 @@ export default {
     handleClean(item) {
       item.isAdded = false;
       this.playerData = this.playerData.filter((pdata) => pdata.title != item.title);
+    },
+    handleDelete(item) {
+      console.log(this.prdData, item.title)
+      this.prdData = this.prdData.filter((pdata) => pdata.title != item.title );
+      this.playerData = this.playerData.filter((pdata) => pdata.title != item.title);
     }
   },
   components: {
@@ -235,7 +240,7 @@ export default {
 .icon {
   position: absolute;
   right: 0;
-  margin: 0.4rem;
+  padding: 0.4rem;
   cursor: pointer;
 }
 

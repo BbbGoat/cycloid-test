@@ -125,7 +125,39 @@
       </article>
       <aside class="right-side">
         <div class="player">
-          플레이어
+          <div class="wrap">
+            <h2 class="title">플레이 리스트</h2>
+            <button class="play-btn" type="button">재생</button>
+          </div>
+
+          <div class="list">
+            <div class="inner">
+              <div class="img-area">
+                <div class="icon" role="button" tabindex="1">
+                  <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
+                </div>
+                <img src="/images/prd1.png" alt="상품 이미지">
+              </div>
+              <div class="info">
+                <h3>영상제목</h3>
+                <div class="line">
+                  <span>TYPE</span>
+                  <span>Video</span>
+                </div>
+                <div class="line">
+                  <span>SIZE</span>
+                  <span>20 MB</span>
+                </div>
+                <div class="line">
+                  <span>TIME</span>
+                  <span>01:00</span>
+                </div>
+              </div>
+              <div class="btn-area">
+                <font-awesome-icon :icon="['fas', 'xmark']" size="xl" class="del-btn" />
+              </div>
+            </div>
+          </div>
         </div>
       </aside>
     </div>
@@ -258,7 +290,7 @@ export default {
 
 
 aside.right-side {
-  background: oldlace;
+  outline: 1px solid red;
 }
 .player {
   position: sticky;
@@ -267,6 +299,41 @@ aside.right-side {
   height: 600px;
   background: #fff;
   margin: 3rem;
+}
+.player .wrap {
+  margin-bottom: 3rem;
+}
+.player .title {
+  line-height: 2.5;
+  margin-bottom: 0;
+}
+.player .play-btn {
+  padding: 1.5rem 5rem;
+  font-size: 1.4rem;
+  border: 0;
+  color: #fff;
+  background: rgb(24 201 97);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.player .list {
+  width: 100%;
+}
+.player .inner {
+  display: flex;
+  justify-content: space-between;
+}
+.player .img-area {
+  width: 45%;
+  height: auto;
+}
+.player .info {
+  width: 45%;
+}
+.player .btn-area {
+  width: auto;
+  height: 100%;
+  cursor: pointer;
 }
 article.left-side {
   width: 100%;

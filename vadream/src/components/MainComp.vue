@@ -4,7 +4,7 @@
       <article class="left-side">
         <div class="top">
           <div class="menu">
-            <div class="del-list">
+            <div class="del-list" @click="modalOpen = true">
               <i>
                 <font-awesome-icon :icon="['far', 'folder-open']" />
               </i>
@@ -133,12 +133,14 @@
         </div>
       </aside>
     </div>
+    <delete-list :deleteData="deleteData" v-if="modalOpen" @modalClose="modalClose"></delete-list>
   </main>
 </template>
 
 <script>
 import ButtonComp from './ButtonComp.vue';
 import prdData from '@/data/prdData.js';
+import DeleteList from './DeleteList.vue';
 
 // 스와이퍼
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -152,6 +154,8 @@ export default {
     return {
       prdData: prdData,
       playerData: [],
+      deleteData: [],
+      modalOpen: false,
     }
   },
   methods: {
@@ -167,10 +171,16 @@ export default {
       console.log(this.prdData, item.title)
       this.prdData = this.prdData.filter((pdata) => pdata.title != item.title );
       this.playerData = this.playerData.filter((pdata) => pdata.title != item.title);
+      this.deleteData.push(item);
+      console.log(this.deleteData);
+    },
+    modalClose() {
+      this.modalOpen = false;
     }
   },
   components: {
     ButtonComp,
+    DeleteList,
     Swiper,
     SwiperSlide,
   },
@@ -230,7 +240,7 @@ export default {
 .img-area {
   position: relative;
   height: 120px;
-  background-color: #ddd;
+  background-color: #f5f5f5;
 }
 .img-area img {
   width: 100%;
@@ -301,7 +311,6 @@ aside.right-side {
   position: sticky;
   width: 360px;
   top: 3rem;
-  height: 600px;
   margin: 3rem;
 }
 .player .wrap {

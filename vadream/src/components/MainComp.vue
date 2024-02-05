@@ -22,60 +22,54 @@
             <!-- 스와이퍼 -->
             <swiper
               :modules="modules"
-              :slides-per-view="6.5"
-              :space-between="30"
+              :slides-per-view="'auto'"
+              :space-between="15"
               :freeMode="true"
-              @swiper="onSwiper"
-              @slideChange="onSlideChange"
             >
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
-              <swiper-slide>slide1</swiper-slide>
+              <!-- 전체리스트 map -->
+              <swiper-slide v-for="(item,idx) in prdData" :key="idx" style="width: auto;">
+                <div class="list">
+                  <div class="inner">
+                    <div class="img-area">
+                      <div class="icon" role="button" tabindex="1">
+                        <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
+                      </div>
+                      <img src="/images/prd1.png" alt="상품 이미지">
+                    </div>
+                    <div class="info">
+                      <h3>영상제목</h3>
+                      <div class="line">
+                        <span>TYPE</span>
+                        <span>Video</span>
+                      </div>
+                      <div class="line">
+                        <span>SIZE</span>
+                        <span>20 MB</span>
+                      </div>
+                      <div class="line">
+                        <span>TIME</span>
+                        <span>01:00</span>
+                      </div>
+                    </div>
+                    <div class="btn-area">
+                      <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
+                      <button class="add-btn" type="button">추가하기</button>
+                      <button class="added-btn" type="button">추가됨</button>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
             </swiper>
 
-            <!-- 전체리스트 map -->
-            <div class="list">
-              <div class="inner">
-                <div class="img-area">
-                  <div class="icon" role="button" tabindex="1">
-                    <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
-                  </div>
-                  <img src="/images/prd1.png" alt="상품 이미지">
-                </div>
-                <div class="info">
-                  <h3>영상제목</h3>
-                  <div class="line">
-                    <span>TYPE</span>
-                    <span>Video</span>
-                  </div>
-                  <div class="line">
-                    <span>SIZE</span>
-                    <span>20 MB</span>
-                  </div>
-                  <div class="line">
-                    <span>TIME</span>
-                    <span>01:00</span>
-                  </div>
-                </div>
-                <div class="btn-area">
-                  <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
-                  <button class="add-btn" type="button">추가하기</button>
-                  <button class="added-btn" type="button">추가됨</button>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </section>
         <!-- 리스트2 -->
         <section class="bot">
           <h2 class="title">전체 컨텐츠</h2>
           <div class="contents">
-            <!-- 전체리스트 map -->
-            <div class="list">
+            <!-- map -->
+            <div class="list" v-for="(item, idx) in prdData" :key="idx">
               <div class="inner">
                 <div class="img-area">
                   <div class="icon" role="button" tabindex="1">
@@ -84,55 +78,23 @@
                   <img src="/images/prd1.png" alt="상품 이미지">
                 </div>
                 <div class="info">
-                  <h3>영상제목</h3>
+                  <h3>{{ item.title }}</h3>
                   <div class="line">
                     <span>TYPE</span>
-                    <span>Video</span>
+                    <span>{{ item.type }}</span>
                   </div>
                   <div class="line">
                     <span>SIZE</span>
-                    <span>20 MB</span>
+                    <span>{{ item.size }}</span>
                   </div>
                   <div class="line">
                     <span>TIME</span>
-                    <span>01:00</span>
+                    <span>{{ item.time }}</span>
                   </div>
                 </div>
                 <div class="btn-area">
-                  <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
-                  <button class="add-btn" type="button">추가하기</button>
-                  <button class="added-btn" type="button">추가됨</button>
-                </div>
-              </div>
-            </div>
-            
-            <div class="list">
-              <div class="inner">
-                <div class="img-area">
-                  <div class="icon" role="button" tabindex="1">
-                    <font-awesome-icon :icon="['fas', 'trash-can']" size="xl" />
-                  </div>
-                  <img src="/images/prd1.png" alt="상품 이미지">
-                </div>
-                <div class="info">
-                  <h3>영상제목</h3>
-                  <div class="line">
-                    <span>TYPE</span>
-                    <span>Video</span>
-                  </div>
-                  <div class="line">
-                    <span>SIZE</span>
-                    <span>20 MB</span>
-                  </div>
-                  <div class="line">
-                    <span>TIME</span>
-                    <span>01:00</span>
-                  </div>
-                </div>
-                <div class="btn-area">
-                  <!-- isAdd Boolean v-if 적용해서 토글버튼 -->
-                  <button class="add-btn" type="button">추가하기</button>
-                  <button class="added-btn" type="button">추가됨</button>
+                  <button class="add-btn" type="button" v-if="item.isAdded === false">추가하기</button>
+                  <button class="added-btn" type="button" v-if="item.isAdded === true">추가됨</button>
                 </div>
               </div>
             </div>
@@ -179,16 +141,20 @@
 
 <script>
 import ButtonComp from './ButtonComp.vue';
+import prdData from '@/data/prdData.js';
+
+// 스와이퍼
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { FreeMode } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
 export default {
   name: 'MainComp',
-  props: {
-
+  data() {
+    return {
+      prdData: prdData,
+    }
   },
   components: {
     ButtonComp,
@@ -196,15 +162,7 @@ export default {
     SwiperSlide,
   },
   setup() {
-    const onSwiper = (swiper) => {
-      console.log(swiper);
-    };
-    const onSlideChange = () => {
-      console.log('slide change');
-    };
     return {
-      onSwiper,
-      onSlideChange,
       modules: [FreeMode]
     };
   }
@@ -245,8 +203,11 @@ export default {
 }
 .contents {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  /* grid-template-columns: repeat(6, 1fr); */
+  grid-template-columns: repeat(auto-fill, minmax(170px, auto));
   grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  /* max-width: 1000px; */
 }
 .list {
   width: 170px;
@@ -370,9 +331,10 @@ aside.right-side {
   cursor: pointer;
 }
 article.left-side {
-  width: 100%;
+  width: 70%;
 }
 article > section {
+  max-width: 1100px;
   margin: 3rem;
 }
 </style>

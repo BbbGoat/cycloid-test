@@ -150,6 +150,7 @@ export default {
 .wrap {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 /* /////////////// top /////////////// */
@@ -179,6 +180,8 @@ export default {
 }
 .contents {
   display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-column-gap: 10px;
 }
 .list {
   width: 170px;
@@ -255,19 +258,18 @@ export default {
 
 
 aside.right-side {
-  width: 30%;
   background: oldlace;
 }
 .player {
   position: sticky;
+  width: 360px;
   top: 3rem;
   height: 600px;
   background: #fff;
   margin: 3rem;
 }
 article.left-side {
-  width: 70%;
-  height: 1200px;
+  width: 100%;
 }
 article > section {
   padding: 3rem;

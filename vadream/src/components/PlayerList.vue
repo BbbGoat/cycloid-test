@@ -31,7 +31,7 @@ export default {
         this.imgUrl = this.playerData[num].url;
         num++;
       }
-    },2000)
+    },10000)
   },
 };
 </script>

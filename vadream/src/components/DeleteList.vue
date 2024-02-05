@@ -36,6 +36,7 @@
                             <span>{{ item.time }}</span>
                             </div>
                         </div>
+                        <div class="btn-area"></div>
                     </div>
                 </div>
             </div>
@@ -130,7 +131,7 @@ export default {
 .img-area {
   position: relative;
   height: 120px;
-  background-color: #ddd;
+  background-color: #f5f5f5;
 }
 .img-area img {
   width: 100%;

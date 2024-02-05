@@ -102,7 +102,7 @@
         <div class="player">
           <div class="wrap">
             <h2 class="title">플레이 리스트</h2>
-            <button class="play-btn" type="button">재생</button>
+            <button class="play-btn" type="button" @click="fullPageChange">재생</button>
           </div>
           <!-- map -->
           <div class="list" v-for="(item, idx) in playerData" :key="idx">
@@ -133,6 +133,7 @@
         </div>
       </aside>
     </div>
+    <play-list v-if="fullPage === true"></play-list>
     <delete-list :deleteData="deleteData" v-if="modalOpen" @modalClose="modalClose"></delete-list>
   </main>
 </template>
@@ -141,6 +142,7 @@
 import ButtonComp from './ButtonComp.vue';
 import prdData from '@/data/prdData.js';
 import DeleteList from './DeleteList.vue';
+import PlayList from './PlayList.vue';
 
 // 스와이퍼
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -156,6 +158,7 @@ export default {
       playerData: [],
       deleteData: [],
       modalOpen: false,
+      fullPage: false,
     }
   },
   methods: {
@@ -176,11 +179,22 @@ export default {
     },
     modalClose() {
       this.modalOpen = false;
+    },
+    fullPageChange() {
+      const documentElement = document.documentElement;
+      if (document.fullscreenElement === null) {
+        documentElement.requestFullscreen();
+        this.fullPage = true;
+      } else {
+        document.exitFullscreen();
+        this.fullPage = false;
+      }
     }
   },
   components: {
     ButtonComp,
     DeleteList,
+    PlayList,
     Swiper,
     SwiperSlide,
   },

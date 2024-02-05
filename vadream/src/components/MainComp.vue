@@ -133,7 +133,7 @@
         </div>
       </aside>
     </div>
-    <play-list v-if="fullPage === true"></play-list>
+    <player-list :playerData="playerData" v-if="fullPage === true" @fullpageClose="fullpageClose"></player-list>
     <delete-list :deleteData="deleteData" v-if="modalOpen" @modalClose="modalClose"></delete-list>
   </main>
 </template>
@@ -142,7 +142,7 @@
 import ButtonComp from './ButtonComp.vue';
 import prdData from '@/data/prdData.js';
 import DeleteList from './DeleteList.vue';
-import PlayList from './PlayList.vue';
+import PlayerList from './PlayerList.vue';
 
 // 스와이퍼
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -189,12 +189,26 @@ export default {
         document.exitFullscreen();
         this.fullPage = false;
       }
+
+      document.addEventListener('fullscreenchange', ()=>{
+        if (document.fullscreenElement) {
+          this.fullPage = true;
+        }
+        else if (!document.fullscreenElement) {
+          this.fullPage = false;
+        }
+      })
+
+    },
+    fullpageClose() {
+      document.exitFullscreen();
+      this.fullPage = false;
     }
   },
   components: {
     ButtonComp,
     DeleteList,
-    PlayList,
+    PlayerList,
     Swiper,
     SwiperSlide,
   },
